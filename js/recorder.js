@@ -17,6 +17,32 @@ s3 = new AWS.S3({
     params: {Bucket: 'cc-b2'}
 });
 
+transcribeservice = new AWS.TranscribeService(
+    {apiVersion: '2017-10-26'}
+    );
+
+function getSttResult(task_name) {
+    transcribeservice.getTranscriptionJob(
+                    {
+                        TranscriptionJobName: task_name
+                    },
+        function (err, data) {
+
+            if (err){console.log('fail to get task')}
+            else{
+                let result_url = data["TranscriptionJob"]["Transcript"]["TranscriptFileUri"];
+                $.getJSON(result_url,
+                    function(data) {
+                    let sentence = data['results']['transcripts'][0]['transcript'];
+                    $('#searchValue').val(sentence);
+                    console.log(sentence)
+                });
+            }
+        })
+}
+
+getSttResult('test');
+
 
 function addAudio(blob) {
     let file = new File([blob], "input_audio.mp3");
@@ -33,7 +59,7 @@ function addAudio(blob) {
         if (err) {
             return alert('There was an error uploading your audio');
         }
-        alert('Successfully uploaded audio.');
+        alert('We are dealing with your speech, please wait!');
     });
 }
 

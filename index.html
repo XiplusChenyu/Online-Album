@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Anton|Cute+Font|Montserrat|Patua+One" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+
     <meta charset="UTF-8">
     <title>Photo Album</title>
 </head>
@@ -30,7 +31,7 @@
 <div class="container-fluid">
     <h1>Photo Album</h1>
     <div class="input-group" style="max-width: 50em; margin: auto">
-        <input type="text" class="form-control" placeholder="Search photo here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <input id='searchValue' type="text" class="form-control" placeholder="Search photo here" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">Search</button>
             <button id = 'record' class="btn btn-outline-secondary" type="button" onclick="dealRecorder(30)"><i class="fa fa-microphone"></i></button>
