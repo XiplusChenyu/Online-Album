@@ -1,0 +1,10 @@
+body {
+    background: whitesmoke;
+    font-family: "Calibri", "Roboto", sans-serif;
+}
+
+h1 {
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
