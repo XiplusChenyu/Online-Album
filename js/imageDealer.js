@@ -6,6 +6,8 @@ function searchPhoto() {
     value_input.val('');
     console.log(search_sentence);
 
+    //todo here: make the image search works
+
     let params ={
         q: search_sentence,
     };
@@ -55,6 +57,8 @@ function upLoadPhoto(){
         $("#addContain").removeClass('hide');
         document.getElementById('addName').innerText = "add file: " +file_name;
         // addImage(imgFile, file_name);
+
+        // todo: make the upload image job works
         let params = {
             "Content-Type": 'application/json',
             "file_name": file_name,
