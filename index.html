@@ -8,7 +8,6 @@
     <!--====================================Install AWS SDK=================================================-->
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.449.0.min.js"></script>
     <script src="js/aws.js"></script>
-
     <!--==================================import aPigClient=======================================-->
     <script type="text/javascript" src="js/lib/axios/dist/axios.standalone.js"></script>
     <script type="text/javascript" src="js/lib/CryptoJS/rollups/hmac-sha256.js"></script>
@@ -21,7 +20,6 @@
     <script type="text/javascript" src="js/lib/apiGatewayCore/simpleHttpClient.js"></script>
     <script type="text/javascript" src="js/lib/apiGatewayCore/utils.js"></script>
     <script type="text/javascript" src="js/apigClient.js"></script>
-
     <!--====================================Install Local API Lib=================================================-->
     <script src="./js/recorder.mp3.min.js"></script>
     <script src="./js/recorder.js"></script>
@@ -35,12 +33,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <!--====================================local css=================================================-->
     <link href="https://fonts.googleapis.com/css?family=Anton|Cute+Font|Montserrat|Patua+One" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
     <meta charset="UTF-8">
     <title>Photo Album</title>
 </head>
@@ -79,10 +75,7 @@
 </div>
 <br>
 
-
-
-<!--define album template-->
-
+<!--when you add a new pic, this block shows up to display the image you added-->
 <div id="addContain" class="card border-dark mb-3 hide">
     <div class="card-header" id="addName"></div>
     <div class="card-body text-dark" >
@@ -92,15 +85,12 @@
     </div>
 </div>
 
-
+<!--this block is used to show album-->
 <div id="albumContain" class="card border-dark mb-3 hide">
     <div class="card-header"><h5 id="searchName">Search Results</h5></div>
     <div id="picContain" class="card-body text-dark" >
     </div>
 </div>
-
-
-
 
 </body>
 </html>
