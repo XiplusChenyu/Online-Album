@@ -85,18 +85,23 @@ function searchPhoto() {
     console.log(search_sentence);
 
     //todo here: make the image search works
-    diaplayItem(test_src, test_name); // this should be a call back function
+    // diaplayItem(test_src, test_name); // this should be a call back function
 
-    // let params ={
-    //     q: search_sentence,
-    // };
-    // apigClient.searchGet(params, {}, {}).then((res)=>{
-    //         console.log(res)
+    let params ={
+        q: search_sentence,
+    };
+    apigClient.searchGet(params, {}, {}).then((res)=>{
+            console.log(res)
     // todo use display item function here to create new pictures
-
-    //     }
-    // ).catch((e)=>{
-    //     console.log('something goes wrong');
-    // })
+    var body = res['data']['body']
+    for(var key in body) {
+      test_src = body[key];
+      test_name = key;
+      diaplayItem(test_src, test_name);
+    }
+  }
+    ).catch((e)=>{
+        console.log('something goes wrong');
+    })
 
 }
