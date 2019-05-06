@@ -24,22 +24,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+    <!--==================================import aPigClient=======================================-->
+    <script type="text/javascript" src="js/lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="js/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="js/lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="js/lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="js/lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="js/lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="js/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="js/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="js/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="js/lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="js/apigClient.js"></script>
+
     <meta charset="UTF-8">
     <title>Photo Album</title>
 </head>
 <body>
 <div class="container-fluid">
     <h1>Photo Album</h1>
-    <div class="input-group" style="max-width: 50em; margin: auto">
-        <input id='searchValue' type="text" class="form-control" placeholder="Search photo here" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Search</button>
-            <button id = 'record' class="btn btn-outline-secondary" type="button" onclick="dealRecorder(30)"><i class="fa fa-microphone"></i></button>
+    <div style="max-width: 50em; width: 75%; margin: auto">
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile04">
+                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Button</button>
+            </div>
+        </div>
+        <br>
+
+
+        <div class="input-group">
+            <input id='searchValue' type="text" class="form-control" placeholder="Search photo here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Search</button>
+                <button id = 'record' class="btn btn-outline-secondary" type="button" onclick="dealRecorder(30)"><i class="fa fa-microphone"></i></button>
+            </div>
         </div>
     </div>
-    <button type="button" id="startRecord" onclick="start_record(30)">Record</button>
-    <button type="button" id="endRecord" onclick="stop_record()">End</button>
-    <button type="button" id="playRecord">Play</button>
 </div>
 
 

@@ -1,5 +1,7 @@
 rec=Recorder(); // use the default format, mp3
 date = new Date();
+holder = 'Waiting';
+timeout = false; // start/end button
 
 albumBucketName = 'cc-b2';
 bucketRegion = 'us-east-1';
@@ -21,28 +23,49 @@ transcribeservice = new AWS.TranscribeService(
     {apiVersion: '2017-10-26'}
     );
 
-function getSttResult(task_name) {
-    transcribeservice.getTranscriptionJob(
-                    {
-                        TranscriptionJobName: task_name
-                    },
-        function (err, data) {
+function getSttResult() {
+    // This function is used for set the input value as the stt result
 
-            if (err){console.log('fail to get task')}
-            else{
-                let result_url = data["TranscriptionJob"]["Transcript"]["TranscriptFileUri"];
-                $.getJSON(result_url,
-                    function(data) {
-                    let sentence = data['results']['transcripts'][0]['transcript'];
-                    $('#searchValue').val(sentence);
-                    console.log(sentence)
-                });
+    transcribeservice.getTranscriptionJob(
+        {
+            TranscriptionJobName: 'test',
+        },
+        function (err, data) {
+            if (err) {
+                console.log('fail to get task')
             }
-        })
+            else {
+                if (data['TranscriptionJob']['TranscriptionJobStatus'] === "COMPLETED") {
+                    let result_url = data["TranscriptionJob"]["Transcript"]["TranscriptFileUri"];
+                    $.getJSON(result_url,
+                        function (data) {
+                            let sentence = data['results']['transcripts'][0]['transcript'];
+                            $('#searchValue').val(sentence);
+                            console.log(sentence);
+                            timeout = true;
+                            holder = "Waiting";
+                            $('#searchValue').attr('placeholder', "Search photo here");
+                        });
+                }
+                else {
+                    $('#searchValue').attr('placeholder', holder);
+                    holder = holder + '.';
+                    console.log('not finish job')
+                }
+            }
+        });
 }
 
-getSttResult('test');
-
+function delay() {
+    if(timeout){
+        console.log('exit job')
+    }
+    else {
+        console.log(timeout);
+        getSttResult();
+        setTimeout("delay()", 3000);
+    }
+}
 
 function addAudio(blob) {
     let file = new File([blob], "input_audio.mp3");
@@ -59,26 +82,31 @@ function addAudio(blob) {
         if (err) {
             return alert('There was an error uploading your audio');
         }
-        alert('We are dealing with your speech, please wait!');
+        else{
+            alert('We are dealing with your speech, please wait!');
+            $('#searchValue').attr('placeholder', holder);
+            setTimeout("delay()", 5000)
+        }
+
     });
 }
 
-
 function start_record(duration) {
+    $('#searchValue').val('');
     rec.open(function(){ // open the recorder source
         rec.start();// begin to record
         setTimeout(function(){
             rec.stop(function(blob,duration){//到达指定条件停止录音
                 console.log(URL.createObjectURL(blob),"时长:"+duration+"ms");
                 rec.close();
-                let audio=document.createElement("audio");
-                let download =document.createElement("a");
-                audio.controls=true;
-                document.body.appendChild(audio);
-                document.body.appendChild(download);
-                download.href = URL.createObjectURL(blob);
-                audio.src=URL.createObjectURL(blob);
-                audio.play();
+                // let audio=document.createElement("audio");
+                // let download =document.createElement("a");
+                // audio.controls=true;
+                // document.body.appendChild(audio);
+                // document.body.appendChild(download);
+                // download.href = URL.createObjectURL(blob);
+                // audio.src=URL.createObjectURL(blob);
+                // audio.play();
             },function(msg){
                 console.log("Recording Failed:"+msg);
             });
@@ -89,16 +117,19 @@ function start_record(duration) {
     });
 }
 
+
 function stop_record() {
+    timeout = false;
     rec.stop(function(blob,duration){//到达指定条件停止录音
-        console.log(URL.createObjectURL(blob),"时长:"+duration+"ms");
+        // console.log(URL.createObjectURL(blob),"时长:"+duration+"ms");
         rec.close();
-        let audio=document.createElement("audio");
-        audio.controls=true;
-        document.body.appendChild(audio);
-        audio.src=URL.createObjectURL(blob);
-        audio.play();
-        addAudio(blob);
+        // let audio=document.createElement("audio");
+        // audio.controls=true;
+        // document.body.appendChild(audio);
+        // audio.src=URL.createObjectURL(blob);
+        // audio.play();
+        addAudio(blob); // add audio to S3
+        // start interval here
     },function(msg){
         console.log("Recording Failed:"+msg);
     });
