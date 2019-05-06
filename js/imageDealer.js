@@ -22,6 +22,7 @@ function searchPhoto() {
 
 
 function addImage(blob, file_name) {
+    // This function use s3 sdk, as a backup method;
     let file = new File([blob], file_name);
     let fileName = file.name;
     let foldKey = encodeURIComponent('images') + '/';
@@ -59,7 +60,7 @@ function upLoadPhoto(){
 
         $("#addPic").attr('src', blobUrl);
         $("#addContain").removeClass('hide');
-        document.getElementById('addName').innerText = "add file: " +file_name;
+        document.getElementById('addName').innerText = "Add File: " +file_name;
         // addImage(imgFile, file_name);
         // imgFile = imgFile.split('base64,')[1];
         console.log(blob);

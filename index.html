@@ -28,6 +28,7 @@
     <script src="./js/imageDealer.js"></script>
     <!--====================================Install Bootstrap=================================================-->
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.2/js/fileinput.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"></script>
@@ -54,7 +55,7 @@
                 <input type="file" class="custom-file-input"
                        accept="image/png, image/jpg"
                        id="inputFile">
-                <label class="custom-file-label" for="inputFile">Choose photo</label>
+                <label class="custom-file-label" style="z-index: -100" for="inputFile">Choose photo</label>
             </div>
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" onclick="upLoadPhoto()">Add to cloud</button>
@@ -79,7 +80,7 @@
 <!--define album template-->
 
 <div id="addContain" class="card border-dark mb-3 hide">
-    <div class="card-header"><p id="addName"></p></div>
+    <div class="card-header" id="addName"></div>
     <div class="card-body text-dark" >
         <div class="card">
             <img id='addPic' class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">

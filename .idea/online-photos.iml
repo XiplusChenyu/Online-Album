@@ -7,5 +7,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-3.4.1" level="application" />
     <orderEntry type="library" name="aws-sdk-2.449.0" level="application" />
+    <orderEntry type="library" name="fileinput" level="application" />
   </component>
 </module>
