@@ -14,6 +14,27 @@ AWS.config.update({
     })
 });
 
+apigClient = null;
+// Make the call to obtain credentials
+AWS.config.credentials.get(function(){
+
+    // Credentials will be available when this function is called.
+    try {
+        token = AWS.config.credentials.accessKeyId;
+
+        apigClient = apigClientFactory.newClient({
+            accessKey: AWS.config.credentials.accessKeyId,
+            secretKey: AWS.config.credentials.secretAccessKey,
+            sessionToken: AWS.config.credentials.sessionToken
+        });
+        console.log('token exchange success');
+    }
+    catch(e) {
+        console.log('token exchange failed');
+    }
+
+});
+
 s3 = new AWS.S3({
     apiVersion: '2006-03-01',
     params: {Bucket: 'cc-b2'}
@@ -120,16 +141,9 @@ function start_record(duration) {
 
 function stop_record() {
     timeout = false;
-    rec.stop(function(blob,duration){//到达指定条件停止录音
-        // console.log(URL.createObjectURL(blob),"时长:"+duration+"ms");
+    rec.stop(function(blob,duration){
         rec.close();
-        // let audio=document.createElement("audio");
-        // audio.controls=true;
-        // document.body.appendChild(audio);
-        // audio.src=URL.createObjectURL(blob);
-        // audio.play();
         addAudio(blob); // add audio to S3
-        // start interval here
     },function(msg){
         console.log("Recording Failed:"+msg);
     });

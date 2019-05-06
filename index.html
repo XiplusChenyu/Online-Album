@@ -8,21 +8,6 @@
     <!--====================================Install AWS SDK=================================================-->
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.449.0.min.js"></script>
     <script src="js/aws.js"></script>
-    <!--====================================Install Bootstrap=================================================-->
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--====================================Install Local API gateway Lib=================================================-->
-    <script src="./js/recorder.mp3.min.js"></script>
-    <script src="./js/recorder.js"></script>
-    <!--====================================local css=================================================-->
-    <link href="https://fonts.googleapis.com/css?family=Anton|Cute+Font|Montserrat|Patua+One" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
 
     <!--==================================import aPigClient=======================================-->
     <script type="text/javascript" src="js/lib/axios/dist/axios.standalone.js"></script>
@@ -37,20 +22,42 @@
     <script type="text/javascript" src="js/lib/apiGatewayCore/utils.js"></script>
     <script type="text/javascript" src="js/apigClient.js"></script>
 
+    <!--====================================Install Local API Lib=================================================-->
+    <script src="./js/recorder.mp3.min.js"></script>
+    <script src="./js/recorder.js"></script>
+    <script src="./js/imageDealer.js"></script>
+    <!--====================================Install Bootstrap=================================================-->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--====================================local css=================================================-->
+    <link href="https://fonts.googleapis.com/css?family=Anton|Cute+Font|Montserrat|Patua+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
     <meta charset="UTF-8">
     <title>Photo Album</title>
 </head>
 <body>
+
+<!--the search part-->
 <div class="container-fluid">
     <h1>Photo Album</h1>
     <div style="max-width: 50em; width: 75%; margin: auto">
         <div class="input-group">
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile04">
-                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                <input type="file" class="custom-file-input"
+                       accept="image/png, image/jpg"
+                       id="inputFile">
+                <label class="custom-file-label" for="inputFile">Choose photo</label>
             </div>
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Button</button>
+                <button class="btn btn-outline-secondary" type="button" onclick="upLoadPhoto()">Add to cloud</button>
             </div>
         </div>
         <br>
@@ -59,12 +66,52 @@
         <div class="input-group">
             <input id='searchValue' type="text" class="form-control" placeholder="Search photo here" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Search</button>
+                <button class="btn btn-outline-secondary" type="button" onclick="searchPhoto()">Search</button>
                 <button id = 'record' class="btn btn-outline-secondary" type="button" onclick="dealRecorder(30)"><i class="fa fa-microphone"></i></button>
             </div>
         </div>
     </div>
 </div>
+<br>
+
+
+
+<!--define album template-->
+
+<div id="addContain" class="card border-dark mb-3 hide">
+    <div class="card-header"><p id="addName"></p></div>
+    <div class="card-body text-dark" >
+        <div class="card">
+            <img id='addPic' class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">
+        </div>
+    </div>
+</div>
+
+
+<div id="albumContain" class="card border-dark mb-3">
+    <div class="card-header"><h5 id="searchName">Result for </h5></div>
+    <div class="card-body text-dark" >
+
+        <div class="card">
+            <img id='testup' class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">
+            <p class="card-text">Name</p>
+        </div>
+        <br>
+        <div class="card">
+            <img class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">
+            <p class="card-text">Name</p>
+        </div>
+        <br>
+        <div class="card">
+                <img class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">
+                <p class="card-text">Name</p>
+        </div>
+        <br>
+
+    </div>
+</div>
+
+
 
 
 </body>

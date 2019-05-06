@@ -8,3 +8,23 @@ h1 {
     text-align: center;
     padding: 20px;
 }
+
+#albumContain {
+    max-width: 50em;
+    width: 72%;
+    margin: auto
+}
+
+#addContain {
+    max-width: 50em;
+    width: 72%;
+    margin: auto
+}
+
+.card-text{
+    padding: 20px;
+}
+
+.hide{
+    display: none;
+}
