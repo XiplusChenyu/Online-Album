@@ -1,26 +1,4 @@
 
-
-function searchPhoto() {
-    let value_input = $('#searchValue');
-    let search_sentence = value_input.val();
-    value_input.val('');
-    console.log(search_sentence);
-
-    //todo here: make the image search works
-
-    let params ={
-        q: search_sentence,
-    };
-    apigClient.searchGet(params, {}, {}).then((res)=>{
-            console.log(res)
-        }
-    ).catch((e)=>{
-        console.log('something goes wrong');
-    })
-
-}
-
-
 function addImage(blob, file_name) {
     // This function use s3 sdk, as a backup method;
     let file = new File([blob], file_name);
@@ -43,7 +21,6 @@ function addImage(blob, file_name) {
     });
 }
 
-
 function upLoadPhoto(){
 
     let file = document.getElementById('inputFile').files[0];
@@ -61,8 +38,6 @@ function upLoadPhoto(){
         $("#addPic").attr('src', blobUrl);
         $("#addContain").removeClass('hide');
         document.getElementById('addName').innerText = "Add File: " +file_name;
-        // addImage(imgFile, file_name);
-        // imgFile = imgFile.split('base64,')[1];
         console.log(blob);
         addImage(blob, file_name);
 
@@ -83,4 +58,45 @@ function upLoadPhoto(){
     };
 
     reader.readAsArrayBuffer(file);
+}
+
+test_src = 'https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-24+at+22.29.25.png';
+test_name = 'test_pic';
+
+
+function diaplayItem(src, file_name) {
+    let $template = $(
+       ` <div class="card">
+            <img class="card-img-top" src=${src}>
+            <p class="card-text">${file_name}</p>
+        </div>
+        <br>`
+    );
+    $('#picContain').append($template);
+    if ($('#albumContain').hasClass('hide')) {
+        $('#albumContain').removeClass('hide');
+    }
+}
+
+function searchPhoto() {
+    let value_input = $('#searchValue');
+    let search_sentence = value_input.val();
+    value_input.val('');
+    console.log(search_sentence);
+
+    //todo here: make the image search works
+    diaplayItem(test_src, test_name); // this should be a call back function
+
+    // let params ={
+    //     q: search_sentence,
+    // };
+    // apigClient.searchGet(params, {}, {}).then((res)=>{
+    //         console.log(res)
+    // todo use display item function here to create new pictures
+
+    //     }
+    // ).catch((e)=>{
+    //     console.log('something goes wrong');
+    // })
+
 }

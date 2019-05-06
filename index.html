@@ -65,10 +65,14 @@
 
 
         <div class="input-group">
-            <input id='searchValue' type="text" class="form-control" placeholder="Search photo here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input id='searchValue' type="text"
+                   class="form-control" placeholder="Search photo here" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" onclick="searchPhoto()">Search</button>
-                <button id = 'record' class="btn btn-outline-secondary" type="button" onclick="dealRecorder(30)"><i class="fa fa-microphone"></i></button>
+                <button class="btn btn-outline-secondary" type="button"
+                        onclick="searchPhoto()">Search</button>
+                <button id = 'record' class="btn btn-outline-secondary"
+                        type="button" onclick="dealRecorder(30)">
+                    <i class="fa fa-microphone"></i></button>
             </div>
         </div>
     </div>
@@ -89,26 +93,9 @@
 </div>
 
 
-<div id="albumContain" class="card border-dark mb-3">
-    <div class="card-header"><h5 id="searchName">Result for </h5></div>
-    <div class="card-body text-dark" >
-
-        <div class="card">
-            <img id='testup' class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">
-            <p class="card-text">Name</p>
-        </div>
-        <br>
-        <div class="card">
-            <img class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">
-            <p class="card-text">Name</p>
-        </div>
-        <br>
-        <div class="card">
-                <img class="card-img-top" src="https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-25+at+00.44.47.png" alt="Card image cap">
-                <p class="card-text">Name</p>
-        </div>
-        <br>
-
+<div id="albumContain" class="card border-dark mb-3 hide">
+    <div class="card-header"><h5 id="searchName">Search Results</h5></div>
+    <div id="picContain" class="card-body text-dark" >
     </div>
 </div>
 

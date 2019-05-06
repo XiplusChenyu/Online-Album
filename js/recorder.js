@@ -120,14 +120,6 @@ function start_record(duration) {
             rec.stop(function(blob,duration){//到达指定条件停止录音
                 console.log(URL.createObjectURL(blob),"时长:"+duration+"ms");
                 rec.close();
-                // let audio=document.createElement("audio");
-                // let download =document.createElement("a");
-                // audio.controls=true;
-                // document.body.appendChild(audio);
-                // document.body.appendChild(download);
-                // download.href = URL.createObjectURL(blob);
-                // audio.src=URL.createObjectURL(blob);
-                // audio.play();
             },function(msg){
                 console.log("Recording Failed:"+msg);
             });
