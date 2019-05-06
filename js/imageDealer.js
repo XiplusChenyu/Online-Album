@@ -21,58 +21,65 @@ function searchPhoto() {
 }
 
 
-// function addImage(blob, file_name) {
-//     let file = new File([blob], file_name);
-//     let fileName = file.name;
-//     let foldKey = encodeURIComponent('images') + '/';
-//
-//     let audioKey = foldKey + fileName;
-//     s3.upload({
-//         Key: audioKey,
-//         Body: file,
-//         ACL: 'public-read'
-//     }, function(err, data) {
-//         if (err) {
-//             return alert('There was an error uploading your photo');
-//         }
-//         else{
-//             console.log('add')
-//         }
-//
-//     });
-// }
+function addImage(blob, file_name) {
+    let file = new File([blob], file_name);
+    let fileName = file.name;
+    let foldKey = encodeURIComponent('images') + '/';
+
+    let audioKey = foldKey + fileName;
+    s3.upload({
+        Key: audioKey,
+        Body: file,
+        ACL: 'public-read'
+    }, function(err, data) {
+        if (err) {
+            return alert('There was an error uploading your photo');
+        }
+        else{
+            console.log('add')
+        }
+
+    });
+}
 
 
 function upLoadPhoto(){
 
     let file = document.getElementById('inputFile').files[0];
     let file_name = file.name;
+    let file_type = file.type;
     let reader = new FileReader();
 
-    let imgFile;
+    reader.onload = function() {
+        let arrayBuffer = this.result;
+        let blob = new Blob([new Int8Array(arrayBuffer)], {
+            type: file_type
+        });
+        let blobUrl = URL.createObjectURL(blob);
 
-    reader.onload=function(e) {
-        imgFile = e.target.result;
-        $("#addPic").attr('src', imgFile);
+        $("#addPic").attr('src', blobUrl);
         $("#addContain").removeClass('hide');
         document.getElementById('addName').innerText = "add file: " +file_name;
         // addImage(imgFile, file_name);
+        // imgFile = imgFile.split('base64,')[1];
+        console.log(blob);
+        addImage(blob, file_name);
 
         // todo: make the upload image job works
-        let params = {
-            "Content-Type": 'application/json',
-            "file_name": file_name,
-        };
-        let body = {
-            imgFile
-        };
-        apigClient.uploadPut(params, body, {})
-            .then(function(result){
-                console.log('success')
-            }).catch( function(result){
-                console.log('failed')
-        });
+    //     let params = {
+    //         "Content-Type": 'application/json',
+    //         "file_name": file_name,
+    //     };
+    //     let body = {
+    //         blob
+    //     };
+    //     apigClient.uploadPut(params, body, {})
+    //         .then(function(result){
+    //             console.log('success')
+    //         }).catch( function(result){
+    //             console.log('failed')
+    //     });
     };
 
-    reader.readAsDataURL(file);
+    reader.readAsArrayBuffer(file);
 }
