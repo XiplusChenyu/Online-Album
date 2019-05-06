@@ -24,6 +24,7 @@ function addImage(blob, file_name) {
 function upLoadPhoto(){
 
     let file = document.getElementById('inputFile').files[0];
+    // let nicefile = document.getElementById('inputFile').files[0];
     let file_name = file.name;
     let file_type = file.type;
     let reader = new FileReader();
@@ -39,25 +40,39 @@ function upLoadPhoto(){
         $("#addContain").removeClass('hide');
         document.getElementById('addName').innerText = "Add File: " +file_name;
         console.log(blob);
-        addImage(blob, file_name);
+        // addImage(blob, file_name);
+        let file = new File([blob], file_name);
 
         // todo: make the upload image job works
-    //     let params = {
-    //         "Content-Type": 'application/json',
-    //         "file_name": file_name,
-    //     };
-    //     let body = {
-    //         blob
-    //     };
-    //     apigClient.uploadPut(params, body, {})
-    //         .then(function(result){
-    //             console.log('success')
-    //         }).catch( function(result){
-    //             console.log('failed')
-    //     });
+        let params = {
+            "Content-Type": 'image/jpg',
+            "file_name": file_name,
+        };
+        let body = {
+            blobUrl
+        };
+        apigClient.uploadPut(params, body, {})
+            .then(function(result){
+                console.log('success')
+            }).catch( function(result){
+                console.log('failed')
+        });
     };
 
     reader.readAsArrayBuffer(file);
+  let data = document.getElementById('inputFile').files[0]
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+  xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+  console.log(this.responseText);
+  }
+  });
+  xhr.withCredentials = false;
+  xhr.open("PUT", "https://3do61nvjua.execute-api.us-east-1.amazonaws.com/coconut/upload?file_name="+data.name);
+  xhr.setRequestHeader("Content-Type", data.type);
+
+  xhr.send(data);
 }
 
 function diaplayItem(src, file_name) {
