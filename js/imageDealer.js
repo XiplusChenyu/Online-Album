@@ -60,10 +60,6 @@ function upLoadPhoto(){
     reader.readAsArrayBuffer(file);
 }
 
-test_src = 'https://s3.amazonaws.com/cc-b2/images/Screen+Shot+2019-04-24+at+22.29.25.png';
-test_name = 'test_pic';
-
-
 function diaplayItem(src, file_name) {
     let $template = $(
        ` <div class="card">
@@ -79,26 +75,31 @@ function diaplayItem(src, file_name) {
 }
 
 function searchPhoto() {
+    $('#albumContain').addClass('hide');
+    $('#picContain').empty();
+
     let value_input = $('#searchValue');
     let search_sentence = value_input.val();
+    if(search_sentence.search("show me") === -1){
+        search_sentence = "show me " + search_sentence;
+    }
     value_input.val('');
     console.log(search_sentence);
-
-    //todo here: make the image search works
-    // diaplayItem(test_src, test_name); // this should be a call back function
 
     let params ={
         q: search_sentence,
     };
     apigClient.searchGet(params, {}, {}).then((res)=>{
-            console.log(res)
+            console.log(res);
     // todo use display item function here to create new pictures
-    var body = res['data']['body']
-    for(var key in body) {
-      test_src = body[key];
-      test_name = key;
+    let body = res['data']['body'];
+    for(let key in body) {
+      let test_src = body[key];
+      let test_name = key;
+      console.log(key);
       diaplayItem(test_src, test_name);
     }
+
   }
     ).catch((e)=>{
         console.log('something goes wrong');
