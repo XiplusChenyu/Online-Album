@@ -18,8 +18,8 @@ This photo album website supports searching using natural language through both 
 
 ## Example Input
 
-<img src="https://github.com/David-ChenH/AI-Customer-Service/blob/master/images/example_input.png">
+<img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/example_input.png">
 
 ### Example Searching Result
 
-<img src="https://github.com/David-ChenH/AI-Customer-Service/blob/master/images/example_input.png">
+<img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/example_input.png">
