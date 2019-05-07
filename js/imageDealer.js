@@ -59,7 +59,7 @@ function upLoadPhoto(){
 
 function diaplayItem(src, file_name) {
     let $template = $(
-       ` <div class="card">
+       ` <div class="card col-md-4">
             <img class="card-img-top" src=${src}>
             <p class="card-text">${file_name}</p>
         </div>
