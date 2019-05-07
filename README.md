@@ -1,7 +1,7 @@
-#  Online Album <img src="https://github.com/David-ChenH/AI-Customer-Service/blob/master/Front-end/images/icons/robot_icon.ico" width=50>
+#  Online Album 
 
 Online-Album Project based on AWS<br/>
-Check here to view our 
+Check here to view our <a href='https://s3.amazonaws.com/cc-holder/index.html'> web page </a> 
 
 ## Authors
 - Chenyu Xi (cx2219)
