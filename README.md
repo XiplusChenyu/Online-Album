@@ -16,10 +16,15 @@ This photo album website supports searching using natural language through both 
 <img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/homepage.png">
 
 
-## Example Input
+## Example Text Input
 
 <img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/example_input.png">
 
-### Example Searching Result
+## Example Audio Input 
+
+<img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/audio_input.png">
+
+
+## Example Searching Result
 
 <img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/example_output.png">
