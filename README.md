@@ -9,8 +9,8 @@ Check here to view our <a href='https://s3.amazonaws.com/cc-holder/index.html'> 
 - Qinyuan Wei (qw2264)
 - Jiliang Ma (jm4750)
 
-##Functionality
-This photo album website supports searching using natural language through both text and voice and uploading your photos to the database. We implement the website on AWS using Lex, ElasticSearch and Rekognition.
+## Functionality
+This photo album website supports searching using natural language through both text and voice and uploading your photos to the database. We implement the website on AWS using Lex, ElasticSearch and Rekognition. The voice recognition part is done with AWS transcribe service
 
 ## Home Page
 <img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/homepage.png">
