@@ -13,10 +13,13 @@ Check here to view our <a href='https://s3.amazonaws.com/cc-holder/index.html'> 
 This photo album website supports searching using natural language through both text and voice and uploading your photos to the database. We implement the website on AWS using Lex, ElasticSearch and Rekognition.
 
 ## Home Page
+<img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/homepage.png">
 
 
-### Sample Conversation
-<img src="https://github.com/David-ChenH/AI-Customer-Service/blob/master/images/animate.gif">
+## Example Input
 
-### Illegal User
-<img src="https://github.com/David-ChenH/AI-Customer-Service/blob/master/images/illegal%20user.png">
+<img src="https://github.com/David-ChenH/AI-Customer-Service/blob/master/images/example_input.png">
+
+### Example Searching Result
+
+<img src="https://github.com/David-ChenH/AI-Customer-Service/blob/master/images/example_input.png">
