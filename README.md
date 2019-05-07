@@ -22,4 +22,4 @@ This photo album website supports searching using natural language through both 
 
 ### Example Searching Result
 
-<img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/example_input.png">
+<img src="https://github.com/XiplusChenyu/Online-Album/blob/master/images/example_output.png">
