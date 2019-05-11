@@ -1,7 +1,7 @@
 #  Online Album 
 
 Online-Album Project based on AWS<br/>
-Check here to view our <a href='https://s3.amazonaws.com/cc-holder/index.html'> web page </a> 
+Check here to view our <a href='https://s3.amazonaws.com/cc-holder/index.html'><del> web page</del> </a> (We already delete ES service, thus the web are not working now)
 
 ## Authors
 - Chenyu Xi (cx2219)
